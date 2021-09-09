@@ -3,9 +3,10 @@ package io.metersphere.plugin.core.api;
 import io.metersphere.plugin.core.ui.PluginResource;
 
 public abstract class UiScriptApi {
+
     /**
      * 初始化页面脚本
-     * 上传JAR到Metersphere平台后会自动调用
+     * 上传JAR到MeterSphere平台后会自动调用
      */
     public abstract PluginResource init();
 

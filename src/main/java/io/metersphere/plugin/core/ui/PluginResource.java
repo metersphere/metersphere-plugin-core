@@ -16,7 +16,6 @@ public class PluginResource {
     private List<UiScript> uiScripts;
 
     public PluginResource() {
-
     }
 
     public PluginResource(String pluginId, List<UiScript> uiScripts) {

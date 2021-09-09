@@ -48,6 +48,8 @@ public abstract class MsTestElement {
     private String environmentId;
     @JSONField(ordinal = 15)
     private String pluginId;
+    @JSONField(ordinal = 16)
+    private String stepName;
 
     private MsTestElement parent;
 
