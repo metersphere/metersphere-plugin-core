@@ -9,6 +9,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.jmeter.save.SaveService;
 import org.apache.jorphan.collections.HashTree;
 import org.apache.jorphan.collections.ListedHashTree;
+import org.apache.logging.log4j.core.config.plugins.validation.constraints.Required;
 
 import java.io.ByteArrayOutputStream;
 import java.util.LinkedList;
@@ -18,39 +19,76 @@ import java.util.List;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public abstract class MsTestElement {
+    // 组件类型
+    @Required(message = "Type 不能为空")
     private String type;
-    private String clazzName = "io.metersphere.plugin.core.MsTestElement";
+
+    // 用于数据反射对象
+    @Required(message = "ClazzName 不能为空")
+    private String clazzName = MsTestElement.class.getCanonicalName();
+
+    // 自身资源ID（用例ID/接口ID/场景ID)等
+    @Required(message = "ID 不能为空")
     @JSONField(ordinal = 1)
     private String id;
+
+    // 当前组件唯一标示
+    @JSONField(ordinal = 4)
+    @Required(message = "ResourceId 不能为空")
+    private String resourceId;
+
+    // 组件标签名称
     @JSONField(ordinal = 2)
     private String name;
+
+    // 组件标签
     @JSONField(ordinal = 3)
     private String label;
-    @JSONField(ordinal = 4)
-    private String resourceId;
+
+    // 引用对象标示
     @JSONField(ordinal = 5)
     private String referenced;
+
+    // 是否展开收起操作
     @JSONField(ordinal = 6)
     private boolean active;
+    // 组件索引
     @JSONField(ordinal = 7)
     private String index;
+
+    // 是否禁用/启用标示
     @JSONField(ordinal = 8)
     private boolean enable = true;
+
+    // 引用对象类型（REF，Created,DELETE）
     @JSONField(ordinal = 9)
     private String refType;
+
+    // 子组件
     @JSONField(ordinal = 10)
     private LinkedList<MsTestElement> hashTree;
+
+    // 项目ID
     @JSONField(ordinal = 12)
     private String projectId;
+
+    // 是否是mock环境
     @JSONField(ordinal = 13)
     private boolean isMockEnvironment;
+
+    // 自身环境Id
     @JSONField(ordinal = 14)
     private String environmentId;
+
+    // 插件ID
     @JSONField(ordinal = 15)
     private String pluginId;
+
+    // 步骤别名
     @JSONField(ordinal = 16)
     private String stepName;
 
+    // 父类
     private MsTestElement parent;
 
     /**
