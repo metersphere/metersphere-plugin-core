@@ -97,6 +97,79 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.5</version>
+                <executions>
+                    <execution>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <!-- 寻找 setting.xml 里配置的密码¬-->
+                <configuration>
+                    <gpgArguments>
+                        <arg>--pinentry-mode</arg>
+                        <arg>loopback</arg>
+                    </gpgArguments>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
+
+    <developers>
+        <developer>
+            <name>ningyu</name>
+            <email>ningbe111@163.com</email>
+            <url>https://ningyu1.github.io/site/archives/index.html</url>
+        </developer>
+        <developer>
+            <name>liuruibin</name>
+            <email>bin@fit2cloud.com</email>
+            <organization>http://fit2cloud.com</organization>
+        </developer>
+    </developers>
+
+    <url>https://github.com/metersphere/metersphere-plugin-core</url>
+
+    <scm>
+        <connection>scm:git:https://github.com/metersphere/metersphere-plugin-core.git</connection>
+        <developerConnection>scm:git:https://github.com/metersphere/metersphere-plugin-core.git</developerConnection>
+        <url>https://github.com/metersphere/metersphere-plugin-core</url>
+    </scm>
+    <distributionManagement>
+        <repository>
+            <id>oss</id>
+            <name>OSS sonatype Repository</name>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+        </repository>
+    </distributionManagement>
+
 </project>
