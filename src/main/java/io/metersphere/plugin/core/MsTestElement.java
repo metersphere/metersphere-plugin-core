@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import io.metersphere.plugin.core.utils.LogUtil;
 import lombok.Data;
-import org.apache.commons.collections4.CollectionUtils;
 import org.apache.jmeter.save.SaveService;
 import org.apache.jorphan.collections.HashTree;
 import org.apache.jorphan.collections.ListedHashTree;
@@ -79,7 +78,7 @@ public abstract class MsTestElement {
      * todo 公共环境逐层传递，如果自身有环境 以自身引用环境为准否则以公共环境作为请求环境
      */
     public void toHashTree(HashTree tree, List<MsTestElement> hashTree, MsParameter config) {
-        if (CollectionUtils.isNotEmpty(hashTree)) {
+        if (hashTree != null && !hashTree.isEmpty()) {
             for (MsTestElement el : hashTree) {
                 el.toHashTree(tree, el.hashTree, config);
             }
@@ -97,7 +96,6 @@ public abstract class MsTestElement {
             SaveService.saveTree(hashTree, bas);
             return bas.toString();
         } catch (Exception e) {
-            e.printStackTrace();
             LogUtil.warn("HashTree error, can't log jmx scenarioDefinition");
         }
         return null;
